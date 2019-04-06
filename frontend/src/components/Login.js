@@ -8,15 +8,43 @@ export class Login extends Component {
       username: '',
       password: ''
     }
+    this.handleInput = this.handleInput.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  handleInput = (eventArgs) => {
+  handleInput = (event) => {
+    const { value, name } = event.target;
     this.setState({
-      username: eventArgs.target.username,
-      password: eventArgs.target.password
-
+      [name]: value
     });
-    console.log(eventArgs);
+  }
+
+  onSubmit(eventArgs) {
+    console.log("The state is ", this.state.username);
+    var outer;
+    fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        outer = res;
+        console.log("The status is ", res);
+        if (res.status === 200) {
+          this.props.history.push('/');
+          console.log("LOGGED IN!");
+        } else {
+          const error = new Error(res.error);
+          throw error;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        console.log("what happend ", outer);
+        alert('Error logging in please try again');
+      });
   }
 
 

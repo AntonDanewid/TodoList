@@ -4,17 +4,16 @@ var user = require('../models/users');
 const withAuth = require('../middleware/authentication');
 
 /* GET users listing. */
-router.get('/', withAuth, function(req, res, next) {
-   
-    console.log("Getting todos  ", req);
+router.get('/', withAuth, function (req, res, next) {
+
     user.findOne({ 'username': req.username }, 'todos', function (err, user) {
-        if (err){
+        if (err) {
             console.log("does not exist");
             return handleError(err);
-        } 
+        }
         console.log(user);
         res.json(user.todos, 200);
-      });
+    });
 
 });
 
