@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TodoItem from './TodoItem';
+import AddTodoItem from './AddTodoItem';
 
 export class TodoList extends Component {
 
@@ -11,7 +12,11 @@ export class TodoList extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getItemsFromAPI();
+  }
+
+  async getItemsFromAPI() {
     var response = await fetch("/getTodos?username=lol");
     var todos = await response.json();
     this.setState({ todoList: todos });
@@ -19,11 +24,16 @@ export class TodoList extends Component {
     console.log(todos);
   }
 
+  updateList() {
+    this.getItemsFromAPI();
+  }
+
   render() {
     return (
       <div className="containter">
         <div className="col-md-8">
-          {this.state.todoList.map(todo => <TodoItem todo={todo}></TodoItem>)}
+          <AddTodoItem updateFunction={this.updateList.bind(this)}></AddTodoItem>
+          {this.state.todoList.map(todo => <TodoItem todo={todo} updateFunction={this.updateList.bind(this)}></TodoItem>)}
         </div>
       </div>
     )

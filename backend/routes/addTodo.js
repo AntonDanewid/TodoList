@@ -5,11 +5,11 @@ const auth = require('../middleware/authentication')
 
 /* GET users listing. */
 router.post('/', auth, function (req, res, next) {
-    console.log("Adding todo", req.body.username, req.body.todo);
-    // console.log(req);
+    console.log("Adding todo", req.username, req.body.todo);
+    const reqUsername = req.username;
     const todoItem = req.body.todo;
 
-    user.findOneAndUpdate({ username: req.query.username }, { $push: { todos: todoItem } },
+    user.findOneAndUpdate({ username: reqUsername }, { $push: { todos: todoItem } },
         function (error, success) {
             if (error) {
                 console.log("DET G{R INTE");

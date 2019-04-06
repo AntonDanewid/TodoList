@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var userSchema = require('./models/users');
 var cors = require('cors');
-const bodyParser= require('body-parser')
+const bodyParser = require('body-parser')
 
 
 var indexRouter = require('./routes/index');
@@ -14,6 +14,8 @@ var createUserRouter = require('./routes/createUser');
 var loginRouter = require('./routes/login');
 var addTodoRouter = require('./routes/addTodo');
 var getTodosRouter = require('./routes/getTodos');
+var checkTokenRouter = require('./routes/checkToken');
+var removeTodoRouter = require('./routes/removeTodo');
 
 
 const secret = 'draganTheGreat';
@@ -32,13 +34,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/createUser', createUserRouter);
 app.use('/login', loginRouter);
 app.use('/addTodo', addTodoRouter);
 app.use('/getTodos', getTodosRouter);
+app.use('/checkToken', checkTokenRouter);
+app.use('/removeTodo', removeTodoRouter);
 
 
 
@@ -46,7 +50,7 @@ var port = 3001;
 
 const mongoose = require('mongoose');
 const mongo_uri = 'mongodb://localhost:27017/todoList';
-mongoose.connect(mongo_uri, function(err) {
+mongoose.connect(mongo_uri, function (err) {
   if (err) {
     throw err;
   } else {
@@ -69,12 +73,12 @@ mongoose.connect(mongo_uri, function(err) {
 // });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
+import Authentication from './components/Authentication'
 import logo from './logo.svg';
 import './App.css';
 import TodoList from './components/TodoList';
@@ -16,7 +18,17 @@ class App extends Component {
             <div className="col-md-10">
               {/* <AddTodoItem></AddTodoItem>
               <TodoList></TodoList> */}
-              <Login></Login>
+              <BrowserRouter>
+                <ul>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/secret">Secret</Link></li>
+                  <li><Link to="/login">Login</Link></li>
+                </ul>
+                <Switch>
+                  <Route path="/secret" component={Authentication(TodoList)} />
+                  <Route path="/login" component={Login} />
+                </Switch>
+              </BrowserRouter>
             </div>
           </div>
         </header>

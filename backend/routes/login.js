@@ -8,8 +8,8 @@ const secret = 'draganTheGreat';
 
 /* GET users listing. */
 router.post('/', function (req, res, next) {
-    console.log(req.body.username);
-    console.log(req.body.password);
+    console.log(req.query.username);
+    console.log(req.query.password);
     console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;

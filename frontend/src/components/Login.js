@@ -20,8 +20,7 @@ export class Login extends Component {
   }
 
   onSubmit(eventArgs) {
-    console.log("The state is ", this.state.username);
-    var outer;
+    eventArgs.preventDefault();
     fetch('/login', {
       method: 'POST',
       body: JSON.stringify(this.state),
@@ -30,11 +29,8 @@ export class Login extends Component {
       }
     })
       .then(res => {
-        outer = res;
-        console.log("The status is ", res);
         if (res.status === 200) {
           this.props.history.push('/');
-          console.log("LOGGED IN!");
         } else {
           const error = new Error(res.error);
           throw error;
@@ -42,11 +38,9 @@ export class Login extends Component {
       })
       .catch(err => {
         console.error(err);
-        console.log("what happend ", outer);
         alert('Error logging in please try again');
       });
   }
-
 
   render() {
     return (
