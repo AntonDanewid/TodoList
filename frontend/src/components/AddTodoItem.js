@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { throws } from 'assert';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 
 export class AddTodoItem extends Component {
@@ -34,6 +36,7 @@ export class AddTodoItem extends Component {
 
 
     console.log("props", this.props);
+    this.setState({ value: '' });
     this.props.updateFunction();
   }
 
@@ -42,14 +45,18 @@ export class AddTodoItem extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      <div className="container">
+        <div className="col-md-10">
+          <Card>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+              </label>
+              <div className="row"></div>
+              <Button variant="primary" onClick={this.handleChange}>Add todo</Button>
+            </form>
+          </Card>
+        </div>
       </div>
     )
   }

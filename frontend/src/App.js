@@ -15,21 +15,19 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="container">
-            <div className="col-md-10">
-              {/* <AddTodoItem></AddTodoItem>
+
+            {/* <AddTodoItem></AddTodoItem>
               <TodoList></TodoList> */}
-              <BrowserRouter>
-                <ul>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/secret">Secret</Link></li>
-                  <li><Link to="/login">Login</Link></li>
-                </ul>
-                <Switch>
-                  <Route path="/secret" component={Authentication(TodoList)} />
-                  <Route path="/login" component={Login} />
-                </Switch>
-              </BrowserRouter>
-            </div>
+            <BrowserRouter>
+              <ul>
+              </ul>
+              <Switch>
+                {/* <Route path="/" component={Authentication(TodoList)} /> */}
+                <Route path="/login" component={Login} />
+                <Route path="/" component={Authentication(TodoList)} />
+              </Switch>
+            </BrowserRouter>
+
           </div>
         </header>
       </div>

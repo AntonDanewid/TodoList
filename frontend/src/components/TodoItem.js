@@ -23,7 +23,7 @@ export class TodoItem extends Component {
 
   render() {
     return (
-      <div className="mt-2">
+      <div className="mt-2 mb-2">
         <Card>
           <Card.Body>
             <div className="text-right">

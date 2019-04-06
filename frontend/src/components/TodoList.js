@@ -28,12 +28,20 @@ export class TodoList extends Component {
     this.getItemsFromAPI();
   }
 
+  signOut(event) {
+
+  }
+
   render() {
     return (
       <div className="containter">
-        <div className="col-md-8">
-          <AddTodoItem updateFunction={this.updateList.bind(this)}></AddTodoItem>
+        <div className="col-md-10">
+          <div className="text-left">
+            <button onClick={this.signOut.bind(this)}>Sign out</button>
+          </div>
           {this.state.todoList.map(todo => <TodoItem todo={todo} updateFunction={this.updateList.bind(this)}></TodoItem>)}
+          <AddTodoItem updateFunction={this.updateList.bind(this)}></AddTodoItem>
+
         </div>
       </div>
     )
