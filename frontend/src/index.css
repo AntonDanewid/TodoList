@@ -34,3 +34,11 @@ code {
       font-size: 15px;
       font-weight: bold;
   }
+
+  .todo-list{
+    background-color: #424242;
+  }
+
+  .todo-item{
+    color: white;
+  }

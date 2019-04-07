@@ -34,7 +34,7 @@ export class TodoList extends Component {
 
   render() {
     return (
-      <div className="containter">
+      <div className="containter todo-list">
         <div className="col-md-10">
           <div className="text-left">
             <button onClick={this.signOut.bind(this)}>Sign out</button>

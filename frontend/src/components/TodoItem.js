@@ -23,16 +23,13 @@ export class TodoItem extends Component {
 
   render() {
     return (
-      <div className="mt-2 mb-2">
-        <Card>
-          <Card.Body>
-            <div className="text-right">
-              <Button variant="danger" onClick={this.removeTodoItem.bind(this)}>Delete</Button>
-            </div>
-            {this.props.todo}
-          </Card.Body>
+      <div className="mt-2 mb-2 row todo-item">
 
-        </Card>
+        <div className="text-right">
+          <Button variant="danger" onClick={this.removeTodoItem.bind(this)}>Delete</Button>
+        </div>
+        {this.props.todo}
+
       </div>
     )
   }

@@ -8,7 +8,10 @@ export class AddTodoItem extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = {
+      value: '',
+      isVisible: false
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,20 +37,16 @@ export class AddTodoItem extends Component {
       })
     });
 
-
     console.log("props", this.props);
-    this.setState({ value: '' });
+    this.setState({ value: '', isVisible: false });
     this.props.updateFunction();
   }
 
-
-
-
   render() {
-    return (
-      <div className="container">
-        <div className="col-md-10">
-          <Card>
+    if (this.state.isVisible) {
+      return (
+        <div className="container">
+          <div className="col-md-10">
             <form onSubmit={this.handleSubmit}>
               <label>
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
@@ -55,10 +54,17 @@ export class AddTodoItem extends Component {
               <div className="row"></div>
               <Button variant="primary" onClick={this.handleChange}>Add todo</Button>
             </form>
-          </Card>
+          </div>
         </div>
-      </div>
-    )
+      )
+
+    } else {
+      return (
+        <div>
+          <button onClick={this.setState({ isVisible: !this.state.isVisible })}> +</button>
+        </div>
+      );
+    }
   }
 }
 
